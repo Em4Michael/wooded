@@ -1,0 +1,220 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Wooded API Documentation",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://{{baseurl}}"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/api/properties/all": {
+      "get": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Get all Property",
+        "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data.",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/signup": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Signup",
+        "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "name": "John Doe",
+                  "email": "john@example.com",
+                  "password": "password123",
+                  "phoneNumber": "1234567890",
+                  "role": "Property Owner/Landlord",
+                  "serviceInterests": [
+                    "Property Listing"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/properties": {
+      "put": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Update Properties",
+        "description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "propertyId": "PROPERTY_ID",
+                  "location": "Los Angeles",
+                  "description": "Updated description for the property."
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/login": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "email": "john@example.com",
+                  "password": "password123"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/properties/create": {
+      "post": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Create Properties",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "example": {
+                  "propertyType": "Commercial",
+                  "location": {
+                    "address": "123 Main St",
+                    "city": "Lagos",
+                    "neighborhood": "Epe",
+                    "pinnedLocation": {
+                      "lat": 37.7749,
+                      "lng": -122.4194
+                    }
+                  },
+                  "features": {
+                    "bedrooms": 3,
+                    "bathrooms": 3,
+                    "size": 1500,
+                    "furnished": true,
+                    "amenities": [
+                      "Parking",
+                      "Pool"
+                    ],
+                    "floorPlan": "https://example.com/floorplan.jpg"
+                  },
+                  "media": {
+                    "images": [],
+                    "videos": [
+                      "https://example.com/video.mp4"
+                    ]
+                  },
+                  "pricing": {
+                    "price": 100000,
+                    "paymentTerms": "Monthly",
+                    "additionalCosts": "Maintenance included"
+                  },
+                  "details": {
+                    "description": "Spacious 3-bedroom apartment.",
+                    "preferredTenant": "couples",
+                    "availabilityDate": "2024-01-01"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    },
+    "/api/properties/delete/": {
+      "delete": {
+        "tags": [
+          "default"
+        ],
+        "summary": "Delete Property",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
